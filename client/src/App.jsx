@@ -10,7 +10,7 @@ import Register from "./routes/register/Register.jsx";
 import ProfileUpdatePage from "./routes/profileUpdatePage/ProfileUpdatePage.jsx";
 import NewPostPage from "./routes/newPostPage/NewPostPage.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { singlePageLoader } from "./lib/loaders.js";
+import { listPageLoader, singlePageLoader } from "./lib/loaders.js";
 function App() {
   const router = createBrowserRouter([
     {
@@ -24,6 +24,7 @@ function App() {
         {
           path: "/list",
           element: <ListPage />,
+          loader: listPageLoader
         },
         {
           path: "/:id",

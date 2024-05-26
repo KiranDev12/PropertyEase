@@ -83,20 +83,25 @@
             outline-style: none;
             box-shadow: none;
         }
-        button {
-            border: none;
-            cursor: pointer;
-            background-color: white;
-            
+        a {
             flex: 1;
+            background-color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            button {
+                border: none;
+                cursor: pointer;
+                background-color:white ;
 
-            @include sm {
-                padding: 10px;
-            }
+                @include sm {
+                    padding: 10px;
+                }
 
-            img {
-                width: 42px;
-                height: 42px;
+                img {
+                    width: 42px;
+                    height: 42px;
+                }
             }
         }
     }
