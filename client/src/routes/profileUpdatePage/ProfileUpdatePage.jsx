@@ -72,7 +72,7 @@ function ProfileUpdatePage() {
         />
         <UploadWidget
           uwConfig={{
-            cloudName: "lamadev",
+            cloudName: "kirandev12",
             uploadPreset: "estate",
             multiple: false,
             maxImageFileSize: 2000000,
