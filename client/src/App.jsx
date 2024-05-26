@@ -10,7 +10,11 @@ import Register from "./routes/register/Register.jsx";
 import ProfileUpdatePage from "./routes/profileUpdatePage/ProfileUpdatePage.jsx";
 import NewPostPage from "./routes/newPostPage/NewPostPage.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { listPageLoader, singlePageLoader } from "./lib/loaders.js";
+import {
+  listPageLoader,
+  profilePageLoader,
+  singlePageLoader,
+} from "./lib/loaders.js";
 function App() {
   const router = createBrowserRouter([
     {
@@ -24,12 +28,12 @@ function App() {
         {
           path: "/list",
           element: <ListPage />,
-          loader: listPageLoader
+          loader: listPageLoader,
         },
         {
           path: "/:id",
           element: <SinglePage />,
-          loader: singlePageLoader
+          loader: singlePageLoader,
         },
         {
           path: "/profile",
@@ -60,17 +64,17 @@ function App() {
         {
           path: "/profile",
           element: <ProfilePage />,
-          // loader: profilePageLoader
+          loader: profilePageLoader,
         },
         {
           path: "/profile/update",
           element: <ProfileUpdatePage />,
-          // loader: profilePageLoader
+          loader: profilePageLoader,
         },
         {
           path: "/add",
           element: <NewPostPage />,
-          // loader: profilePageLoader
+          loader: profilePageLoader,
         },
       ],
     },
