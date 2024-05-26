@@ -2,7 +2,7 @@ import prisma from "../lib/prisma.js";
 
 export const getPosts = async (req, res) => {
   const query = req.query;
-  
+
   try {
     const posts = await prisma.post.findMany({
       where: {
@@ -13,15 +13,18 @@ export const getPosts = async (req, res) => {
         price: {
           gte: parseInt(query.minPrice) || 0,
           lte: parseInt(query.maxPrice) || 100000000,
-        }
-      }
+        },
+      },
     });
-    res.status(200).json(posts);
+    setTimeout(() => {
+      res.status(200).json(posts);
+    }, 2000);
   } catch (error) {
     console.log(error);
-    res.status(500).json({ message: "Faild to get posts" });
+    res.status(500).json({ message: "Failed to get posts" });
   }
 };
+
 export const getPost = async (req, res) => {
   const id = req.params.id;
   try {

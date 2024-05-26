@@ -1,21 +1,25 @@
 import { useState } from "react";
 import "./searchBar.scss";
 import { Link } from "react-router-dom";
+
 const types = ["buy", "rent"];
 
 export default function SearchBar() {
-  const [query, Setquery] = useState({
+  const [query, setQuery] = useState({
     type: "buy",
-    location: "",
+    city: "",
     minPrice: 0,
     maxPrice: 0,
   });
+
   const switchType = (val) => {
-    Setquery((prev) => ({ ...prev, type: val }));
+    setQuery((prev) => ({ ...prev, type: val }));
   };
+
   const handleChange = (e) => {
-    Setquery((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    setQuery((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
+
   return (
     <div className="searchBar">
       <div className="type">
@@ -23,7 +27,7 @@ export default function SearchBar() {
           <button
             key={type}
             onClick={() => switchType(type)}
-            className={query.type === type ? "active" : " "}
+            className={query.type === type ? "active" : ""}
           >
             {type}
           </button>
@@ -45,7 +49,7 @@ export default function SearchBar() {
           onChange={handleChange}
         />
         <input
-          type="text"
+          type="number"  // Changed to number for consistency with minPrice
           name="maxPrice"
           min={0}
           max={10000000}
