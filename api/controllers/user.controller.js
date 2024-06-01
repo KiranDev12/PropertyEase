@@ -116,12 +116,34 @@ export const profilePosts = async (req, res) => {
       where: { userId: tokenUserId },
       include: {
         post: true,
-      }
+      },
     });
-    const savedPosts = saved.map(item=>item.post)
+    const savedPosts = saved.map((item) => item.post);
     res.status(200).json({ userPosts, savedPosts });
   } catch (error) {
     console.log(error);
     res.status(500).json({ message: "Failed to get profile posts" });
+  }
+};
+
+export const getNotificationNumber = async (req, res) => {
+  const tokenUserId = req.userId;
+  try {
+    const chats = await prisma.chat.count({
+      where: {
+        userdIDs: {
+          has: tokenUserId,
+        },
+        NOT: {
+          seenBy: {
+            hasSome: [tokenUserId],
+          },
+        },
+      },
+    });
+    res.status(200).json(chats);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: "Failed to get notification number" });
   }
 };
