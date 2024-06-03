@@ -147,3 +147,40 @@ export const getNotificationNumber = async (req, res) => {
     res.status(500).json({ message: "Failed to get notification number" });
   }
 };
+
+export const getAgents = async (req, res) => {
+  try {
+    // Fetch users who have at least one post
+    const agents = await prisma.user.findMany({
+      where: {
+        posts: {
+          some: {},
+        },
+      },
+      select: {
+        id: true,
+        email: true,
+        username: true,
+        avatar: true,
+        createdAt: true,
+        _count: {
+          select: {
+            posts: true,
+          },
+        },
+      },
+    });
+
+    // Transform the data to include the posts count
+    const agentsWithPostCount = agents.map((agent) => ({
+      ...agent,
+      postCount: agent._count.posts,
+    }));
+
+    // Return the agents data as JSON
+    res.status(200).json(agentsWithPostCount);
+  } catch (error) {
+    console.error("Error fetching agents:", error);
+    res.status(500).json({ error: "An error occurred while fetching agents." });
+  }
+};

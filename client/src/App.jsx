@@ -15,6 +15,9 @@ import {
   profilePageLoader,
   singlePageLoader,
 } from "./lib/loaders.js";
+import About from "./routes/About/About.jsx";
+import Contact from "./routes/Contact/Contact.jsx";
+import Agents from "./routes/Agents/Agents.jsx";
 function App() {
   const router = createBrowserRouter([
     {
@@ -54,6 +57,18 @@ function App() {
         {
           path: "/add",
           element: <NewPostPage />,
+        },
+        {
+          path: "/about",
+          element: <About />,
+        },
+        {
+          path: "/contact",
+          element: <Contact />,
+        },
+        {
+          path: "/agents",
+          element: <Agents />,
         },
       ],
     },

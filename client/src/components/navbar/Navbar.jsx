@@ -24,9 +24,9 @@ function Navbar() {
           <span>Property Ease</span>
         </a>
         <a href="/">Home</a>
-        <a href="/">About</a>
-        <a href="/">Contact</a>
-        <a href="/">Agents</a>
+        <a href="/about">About</a>
+        <a href="/agents">Agents</a>
+        {/* <a href="/contact">Contact</a> */}
       </div>
 
       <div className="right">
@@ -61,9 +61,9 @@ function Navbar() {
         </div>
         <div className={open ? "menu active" : "menu"}>
           <a href="/">Home</a>
-          <a href="/">About</a>
-          <a href="/">Contact</a>
-          <a href="/">Agents</a>
+          <a href="/agents">Agents</a>
+          <a href="/about">About</a>
+          {/* <a href="/contact">Contact</a> */}
           <a href="/login">Sign In</a>
           <a href="/register">Sign Up</a>
         </div>

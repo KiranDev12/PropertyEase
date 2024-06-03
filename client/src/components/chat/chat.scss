@@ -9,7 +9,7 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
-    overflow-y: scroll;
+    overflow-y: auto;
 
     h1 {
         font-weight: 300;
@@ -17,12 +17,17 @@
 
     .message {
         background-color: white;
-        padding: 20px;
+        padding: 15px;
         border-radius: 10px;
         display: flex;
         align-items: center;
-        gap: 20px;
+        gap: 15px;
         cursor: pointer;
+        transition: background-color 0.3s;
+
+        &:hover {
+            background-color: #f0f0f0;
+        }
 
         img {
             width: 40px;
@@ -33,6 +38,13 @@
 
         span {
             font-weight: bold;
+            margin-right: auto;
+        }
+
+        p {
+            margin: 0;
+            color: #666;
+            font-size: 14px;
         }
     }
 }
@@ -43,24 +55,27 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-
+    border-top: 1px solid #ddd;
+    border-radius: 10px 10px 0 0;
+    overflow: hidden;
 
     .top {
         background-color: #f7c14b85;
-        padding: 20px;
+        padding: 15px;
         font-weight: bold;
         display: flex;
         align-items: center;
         justify-content: space-between;
+        border-bottom: 1px solid #ddd;
 
         .user {
             display: flex;
             align-items: center;
-            gap: 20px;
+            gap: 10px;
 
             img {
-                width: 30px;
-                height: 30px;
+                width: 35px;
+                height: 35px;
                 border-radius: 50%;
                 object-fit: cover;
             }
@@ -68,61 +83,89 @@
 
         .close {
             cursor: pointer;
-        }
+            padding: 5px;
+            border-radius: 50%;
+            transition: background-color 0.3s;
 
+            &:hover {
+                background-color: #e0e0e0;
+            }
+        }
     }
 
     .center {
-
-        height: 200px;
-        overflow: scroll;
+        flex: 1;
         padding: 20px;
+        overflow-y: auto;
         display: flex;
         flex-direction: column;
-
-        gap: 20px;
+        gap: 15px;
+        background-color: #fafafa;
 
         .chatMessage {
-            width: 50%;
+            max-width: 75%;
+            padding: 10px 15px;
+            border-radius: 10px;
+            background-color: #e0e0e0;
+            color: #333;
+            display: flex;
+            flex-direction: column;
 
             &.own {
                 align-self: flex-end;
+                background-color: #d1f0ff;
                 text-align: right;
+            }
+
+            p {
+                margin: 0 0 5px 0;
             }
 
             span {
                 font-size: 12px;
-                background-color: #f7c14b39;
-                padding: 2px;
-                border-radius: 5px;
+                color: #888;
+                align-self: flex-end;
             }
         }
-
-
-
     }
 
     .bottom {
-        border-top: 2px solid #f7c14b85;
-        height: 60px;
         display: flex;
         align-items: center;
-        justify-content: space-between;
+        border-top: 1px solid #ddd;
+        padding: 10px;
+        background-color: #f9f9f9;
 
         textarea {
-            flex: 3;
-            height: 100%;
-            border: none;
-            padding: 20px;
+            flex: 1;
+            height: 50px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            resize: none;
+            font-size: 14px;
+            border-radius: 5px;
+            margin-right: 10px;
+            outline: none;
+            transition: border-color 0.3s;
+
+            &:focus {
+                border-color: #f7c14b;
+            }
         }
 
         button {
-            flex: 1;
-            background-color: #f7c14b85;
-            height: 100%;
+            background-color: #f7c14b;
             border: none;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 5px;
             cursor: pointer;
-        }
+            font-size: 16px;
+            transition: background-color 0.3s;
 
+            &:hover {
+                background-color: #e6b13c;
+            }
+        }
     }
 }
