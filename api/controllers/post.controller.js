@@ -115,3 +115,21 @@ export const deletePost = async (req, res) => {
     res.status(500).json({ message: "Faild to delete posts" });
   }
 };
+
+export const getPostsByUserId = async (req, res) => {
+  try {
+    const tokenUserId = req.userId;
+
+    // Fetch user's posts using Prisma
+    const posts = await prisma.post.findMany({
+      where: {
+        userId: tokenUserId,
+      },
+    });
+
+    res.json(posts);
+  } catch (error) {
+    console.error("Error fetching posts:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
