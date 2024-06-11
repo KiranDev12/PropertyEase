@@ -2,15 +2,18 @@ import "./singlepage.scss";
 import Slider from "../../components/slider/Slider";
 import { singlePostData, userData } from "../../lib/dummydata";
 import Map from "../../components/map/Map";
-import { redirect, useLoaderData } from "react-router-dom";
+import { redirect, useLoaderData, useNavigate } from "react-router-dom"; // Added useNavigate for navigation
 import DOMPurify from "dompurify";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import apiRequest from "../../lib/apiRequest";
+
 function SinglePage() {
   const post = useLoaderData();
   const [saved, setSaved] = useState(post.isSaved);
   const { currentUser } = useContext(AuthContext);
+  const navigate = useNavigate(); // Initialize navigate
+
   const handleSave = async () => {
     setSaved((prev) => !prev);
     if (!currentUser) {
@@ -23,6 +26,11 @@ function SinglePage() {
       setSaved((prev) => !prev);
     }
   };
+
+  const handleChat = () => {
+    navigate("/profile");
+  };
+
   return (
     <div className="singlepage">
       <div className="details">
@@ -63,7 +71,7 @@ function SinglePage() {
                 {post.postDetail.utitlities === "owner" ? (
                   <p>Owner is responsible</p>
                 ) : (
-                  <p>Tenent is responsible</p>
+                  <p>Tenant is responsible</p>
                 )}
               </div>
             </div>
@@ -85,9 +93,9 @@ function SinglePage() {
                 {post.postDetail.utitlities === "owner" ? (
                   <p>Owner is responsible</p>
                 ) : (
-                  <p>Tenent is responsible</p>
+                  <p>Tenant is responsible</p>
                 )}
-                <p>Must have 3x the rernt in total household income</p>
+                <p>Must have 3x the rent in total household income</p>
               </div>
             </div>
           </div>
@@ -149,7 +157,7 @@ function SinglePage() {
           <div className="mapContainer">
             <Map items={[post]} />
           </div>
-          <button>
+          <button onClick={handleChat}>
             <img src="/chat.png" alt="" />
             Send a Message
           </button>
@@ -165,4 +173,5 @@ function SinglePage() {
     </div>
   );
 }
+
 export default SinglePage;
